@@ -1,0 +1,65 @@
+<div class="container">
+
+    {% render 'page-title', title: "Your Cart" %}
+
+    {% form 'cart', cart %}
+
+    {% if cart.empty? %}
+    <div class="alert alert-warning text-center" role="alert">
+        Hey, your cart is empty!
+    </div>
+    {% else %}
+    <div class="row">
+        {% for item in cart.items %}
+        <div class="col-md-12 mb-4 border-bottom">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{{ item.image | image_url }}" class="img-fluid rounded-start d-flex"
+                        style="height:140px; margin:20px auto;" />
+                </div>
+                <div class="col-md-8">
+
+                    <h5>{{ item.title }}</h5>
+                    <p><strong>Price:</strong> {{ item.price | money }}</p>
+                    <p class="d-flex align-items-center">
+                        <label for="quantity-{{ forloop.index }}" class="me-3">Quantity:</label>
+                        <input class="form-control" type="number" name="updates[]" id="quantity-{{ forloop.index }}"
+                            value="{{ item.quantity }}" style="width:108px" onchange="triggerUpdate()">
+                    </p>
+
+                </div>
+                <div class="col-md-2 d-flex align-items-center justify-content-center justify-content-sm-end my-3">
+                    <a href="{{ item.url_to_remove }}" class="btn btn-outline-danger">Remove</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-end align-items-center">
+            <h4 class="m-0 me-3">Total: {{ cart.total_price | money }}</h4>
+            <button style="visibility: hidden; position:absolute;" type="submit" class="btn btn-secondary me-2"
+                name="update">Update
+                Cart</button>
+            <button type="submit" class="btn btn-primary" name="checkout">Checkout</button>
+        </div>
+    </div>
+    {% endif %}
+
+    {% endform %}
+</div>
+
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     console.log({{ cart.items | json }});
+    // });
+
+    function triggerUpdate() {
+        const updateButton = document.querySelector('button[name="update"]');
+        if (updateButton) {
+            updateButton.click();
+        }
+    }
+
+</script>

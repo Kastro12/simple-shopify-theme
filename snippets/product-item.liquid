@@ -1,0 +1,8 @@
+<div>
+    <a href="{{product.url}}" class="d-block">
+        <img src="{{product.featured_image | image_url: width: 300 }}" class="d-flex" style="margin: 0 auto"/>
+        <h3 class="mt-4" style="font-size: 20px;">{{product.title}}</h3>
+        <p>{{product.description}}</p>
+        <p>{{product.price | money}}</p>
+    </a>
+</div>

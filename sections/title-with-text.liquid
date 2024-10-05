@@ -1,0 +1,32 @@
+{% if section.settings %}
+<div>
+    <h1>{{ section.settings.title_id }}</h1>
+    <p>{{ section.settings.text_id }}</p>
+</div>
+{% endif %}
+{% schema %}
+    {
+    "name": "Title with text",
+    "class":"section",
+    "presets": [
+        {
+            "name": "Title with text"
+        }
+    ],
+    "settings":[
+        {
+            "type":"text",
+            "id":"title_id",
+            "label":"Section title",
+            "default":"Title"
+        },
+        {
+            "type":"textarea",
+            "id":"text_id",
+            "label":"Simple text",
+            "default":"Simple text"
+        }   
+
+    ]
+    }
+{% endschema %}

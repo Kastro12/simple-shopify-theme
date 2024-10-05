@@ -1,0 +1,12 @@
+{% paginate blog.articles by 4 %}
+<div class="container">
+    {% render 'page-title', title: blog.title %}
+    <div class="row">
+        {% for article in blog.articles %}
+        <div class="col-lg-4 mb-5 blog-box">
+            {% render 'blog-item', article: article %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endpaginate %}

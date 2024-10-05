@@ -1,0 +1,6 @@
+<a href="{{ article.url }}">
+    <img style="width: 100%;" src="{{article.image.src | image_url}}" alt="{{article.image.alt}}" />
+    <h3 class="pt-4" style="font-size: 20px;">{{article.title}}</h3>
+    <p><small>Author: {{ article.author }}</small></p>
+    <div>{{ article.excerpt }}</div>
+</a>

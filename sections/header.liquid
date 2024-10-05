@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg" style="background-color: {{section.settings.bg}}">
+    <div class="container">
+        <a class="navbar-brand" href="/"><img src="{{ shop.brand.logo | image_url}}" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                {% for link in linklists.main-menu.links %}
+                <li class="header-nav-item">
+                    <a class="header-nav-anchor" href="{{ link.url }}">
+                        {{ link.title }}
+                    </a>
+
+                    {% if link.links != blank %}
+                    <ul class="header-sub">
+                        {% for child in link.links %}
+                        <li class="nav-link">
+                            <a href="{{ child.url }}" class="header-sub-anchor">
+                                {{ child.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <span class="d-flex">
+                {% if section.settings.show_search %}
+                <form class="search-wrapper d-flex" role="search" action="/search">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="q"
+                        value="{{ search.terms }}">
+                    <button class="img-btn" type="submit"></button>
+                </form>
+                {% endif %}
+
+                <div class="icon-wrapper">
+                    <a href="/cart">
+                        <span class="cart-count">
+                            {{ cart.item_count }}
+                        </span>
+                        <img class="img-btn" src="{{ 'cart-shopping.png' | asset_url }}" />
+                    </a>
+                </div>
+
+            </span>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar .navbar-brand img {
+        height: 58px;
+    }
+
+    .navbar .navbar-nav .header-nav-anchor {
+        font-size: 18px;
+        text-decoration: none;
+        color: #343434;
+        padding: 12px;
+        margin: 0 16px;
+    }
+
+    .navbar .search-wrapper {
+        margin: 0;
+        position: relative;
+    }
+
+    .navbar .search-wrapper .form-control {
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid #343434;
+        padding-right: 24px;
+    }
+
+    .navbar .search-wrapper .form-control::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        display: none;
+
+    }
+
+    .navbar .search-wrapper .form-control:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .navbar .search-wrapper .img-btn {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        background-image: url('{{ "magnifying-glass.png" | asset_url }}');
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .navbar .search-wrapper .img-btn:focus {
+        outline: none;
+    }
+
+    .navbar .icon-wrapper {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 24px;
+        position: relative;
+    }
+
+    .navbar .icon-wrapper img {
+        width: 26px;
+        -o-object-fit: contain;
+    }
+
+    .navbar .icon-wrapper .cart-count {
+        position: absolute;
+        color: #343434;
+        top: 0;
+        right: 0;
+        font-weight: 600;
+    }
+</style>
+
+
+{% schema %}
+{
+   "name":"Header",
+   "settings":[
+      {
+         "type":"checkbox",
+         "id":"show_search",
+         "label":"Show search form?",
+         "default":false
+      },
+      {
+         "type":"color",
+         "id":"bg",
+         "label":"Background color",
+         "default":"#f1f1f1"
+      },
+      {
+         "type":"color",
+         "id":"text_color",
+         "label":"Text color",
+         "default":"#343434"
+      }
+   ]
+}
+{% endschema %}

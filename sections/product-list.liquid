@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="display-4 mt-5 mb-5 text-center">{{ collections['all-watches'].title }}</h2>
+        </div>
+    </div>
+
+    <div class="products-list row">
+        {% for product in collections['all-watches'].products %}
+        <div class="product-item col-lg-4 mb-5">
+            {% render 'product-item', product: product %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

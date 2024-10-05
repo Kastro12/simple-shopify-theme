@@ -1,0 +1,39 @@
+body {
+    background-color: {{ settings.bg }};
+    color: {{ settings.text_color }};
+}
+
+a {
+    color: {{ settings.link_color }};
+    text-decoration: none;
+}
+
+a:hover {
+    color: {{ settings.link_color | lighten: 15 }};
+    text-decoration: none;
+}
+
+.product-item a, .blog-box a{
+    color: {{ settings.text_color }}; 
+}
+
+.color-Metal{
+    color:#201f41;
+    font-weight: 500;
+    margin:0 3px;
+}
+
+.color-Leather{
+    color:#692f0e;
+    font-weight: 500;
+    margin:0 3px;
+}
+
+.shopify-challenge__container .shopify-challenge__button {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.shopify-challenge__container .shopify-challenge__button:hover {
+    background-color: #0a58ca;
+}

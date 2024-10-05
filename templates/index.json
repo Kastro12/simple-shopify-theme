@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "text-on-the-banner": {
+      "type": "text-on-the-banner"
+    },
+
+    "product-list": {
+      "type": "product-list"
+    }
+  },
+
+  "order": ["text-on-the-banner", "product-list"]
+}

@@ -1,0 +1,28 @@
+<div class="container">
+    {% render 'page-title', title: product.title %}
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="{{product.featured_image | image_url}}" style="display: flex; margin: 0 auto 60px auto; width: 500px;    max-height: 500px;
+    object-fit: contain;" />
+        </div>
+        <div class="col-lg-6">
+            <p>{{product.description}}</p>
+            <p>Watch material: {% for tag in product.tags -%}
+                <span class="color color-{{tag}}">{{ tag }}</span>
+                {%- endfor %}
+            </p>
+            <p>{{product.price | money}}</p>
+            {% form 'product', product %}
+
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <div class="product-quantity">
+                <label for="quantity" class="mb-1">Quantity</label>
+                <input name="quantity" class="form-control mb-4" id="quantity" value="1" type="number"
+                    style="width:108px">
+            </div>
+            <button type="submit" class="btn btn-primary mb-5" style="width:108px;padding:6px 0;">Add to Cart</button>
+
+            {% endform %}
+        </div>
+    </div>
+</div>
